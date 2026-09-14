@@ -1,0 +1,3564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+Linear Algebra for Computing - Complete BCA Notes
+</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:1.75;
+    background:#f4f7fb;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#141e30,#243b55);
+    color:white;
+    text-align:center;
+    padding:55px 20px;
+}
+
+header h1{
+    font-size:42px;
+    margin:0 0 10px;
+}
+
+header p{
+    font-size:19px;
+    margin:5px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:25px;
+}
+
+section{
+    background:white;
+    margin:25px 0;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    color:#173b67;
+    border-bottom:3px solid #173b67;
+    padding-bottom:8px;
+}
+
+h3{
+    color:#244b78;
+    margin-top:30px;
+}
+
+h4{
+    color:#593c8f;
+}
+
+.toc{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.toc a{
+    display:block;
+    text-decoration:none;
+    padding:7px;
+    color:#174c8c;
+}
+
+.definition{
+    background:#edf6ff;
+    border-left:6px solid #2471a3;
+    padding:16px;
+    border-radius:7px;
+    margin:18px 0;
+}
+
+.example{
+    background:#edfff2;
+    border-left:6px solid #27ae60;
+    padding:16px;
+    border-radius:7px;
+    margin:18px 0;
+}
+
+.important{
+    background:#fff2f2;
+    border-left:6px solid #e74c3c;
+    padding:16px;
+    border-radius:7px;
+    margin:18px 0;
+}
+
+.tip{
+    background:#fff9e8;
+    border-left:6px solid #f39c12;
+    padding:16px;
+    border-radius:7px;
+    margin:18px 0;
+}
+
+.formula{
+    background:#f4edff;
+    padding:18px;
+    border-radius:9px;
+    text-align:center;
+    font-size:21px;
+    margin:18px 0;
+    overflow-x:auto;
+}
+
+.matrix{
+    font-family:"Courier New",monospace;
+    background:#f7f7f7;
+    padding:18px;
+    border-radius:8px;
+    text-align:center;
+    font-size:20px;
+    overflow-x:auto;
+    white-space:pre;
+}
+
+pre{
+    background:#1e1e1e;
+    color:#f1f1f1;
+    padding:20px;
+    border-radius:9px;
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:11px;
+    vertical-align:top;
+}
+
+th{
+    background:#243b55;
+    color:white;
+}
+
+.badge{
+    display:inline-block;
+    padding:4px 10px;
+    background:#243b55;
+    color:white;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.small{
+    font-size:14px;
+    color:#555;
+}
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+@media(max-width:750px){
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:30px;
+    }
+
+    section{
+        padding:20px;
+    }
+}
+
+footer{
+    background:#141e30;
+    color:white;
+    text-align:center;
+    padding:35px;
+    margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
+
+<header>
+
+<h1>Linear Algebra for Computing</h1>
+
+<p>
+Complete BCA Notes — Hinglish + Concepts + Formulas + Solved Examples
+</p>
+
+<p>
+Matrices • Determinants • Inverse • Linear Equations • Computing Applications
+</p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- ===================================================== -->
+<!-- TOC -->
+<!-- ===================================================== -->
+
+<div class="toc">
+
+<h2>📚 Complete Contents</h2>
+
+<a href="#intro">1. Linear Algebra kya hai?</a>
+
+<a href="#matrix">
+2. Matrices and Matrix Operations
+</a>
+
+<a href="#types">
+3. Types of Matrices
+</a>
+
+<a href="#operations">
+4. Matrix Operations
+</a>
+
+<a href="#determinant">
+5. Determinants
+</a>
+
+<a href="#inverse">
+6. Inverse of Matrix
+</a>
+
+<a href="#equations">
+7. Simultaneous Linear Equations
+</a>
+
+<a href="#methods">
+8. Methods of Solving Linear Equations
+</a>
+
+<a href="#applications">
+9. Applications in Computing
+</a>
+
+<a href="#mistakes">
+10. Common Mistakes
+</a>
+
+<a href="#revision">
+11. Quick Revision
+</a>
+
+<a href="#exam">
+12. Exam-Oriented Questions
+</a>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- INTRODUCTION -->
+<!-- ===================================================== -->
+
+<section id="intro">
+
+<h2>1. Linear Algebra kya hai?</h2>
+
+<div class="definition">
+
+<b>Linear Algebra</b> mathematics ki woh branch hai jo
+vectors, matrices, linear equations aur linear transformations
+ke saath deal karti hai.
+
+</div>
+
+<p>
+Ab simple BCA language mein samjho.
+</p>
+
+<p>
+Computer science mein bahut saara data numbers ke form mein hota hai.
+Jab numbers ko systematically rows aur columns mein arrange karna hota hai,
+to <b>matrix</b> ka use hota hai.
+</p>
+
+<p>
+Example:
+</p>
+
+<div class="matrix">
+[ 10   20   30 ]
+[ 40   50   60 ]
+[ 70   80   90 ]
+</div>
+
+<p>
+Ye ek matrix hai.
+</p>
+
+<p>
+Machine Learning, Computer Graphics, Image Processing,
+Artificial Intelligence, Data Science aur Computer Vision mein
+matrices bahut important hain.
+</p>
+
+
+<div class="important">
+
+<b>Ek line mein:</b>
+
+<br><br>
+
+Linear Algebra =
+Numbers/Data ko structured mathematical form mein represent karke
+unpar calculations aur transformations karna.
+
+</div>
+
+
+<h3>Linear Algebra ko BCA mein kyun padhna hai?</h3>
+
+<ul>
+
+<li>Images ko matrices ki form mein represent kiya ja sakta hai.</li>
+
+<li>Machine Learning models mein matrices ka use hota hai.</li>
+
+<li>Computer graphics mein transformations matrices se hoti hain.</li>
+
+<li>Databases aur data analysis mein matrix operations useful hain.</li>
+
+<li>Linear equations ko solve karne ke liye matrix methods use hote hain.</li>
+
+<li>AI algorithms mein matrix multiplication extremely important hai.</li>
+
+</ul>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- MATRIX -->
+<!-- ===================================================== -->
+
+<section id="matrix">
+
+<h2>2. Matrices</h2>
+
+
+<h3>2.1 Matrix kya hoti hai?</h3>
+
+<div class="definition">
+
+Matrix numbers/symbols ka rectangular arrangement hota hai
+jo rows aur columns mein arranged hota hai.
+
+</div>
+
+
+<p>
+Example:
+</p>
+
+<div class="matrix">
+A =
+[ 2   4   6 ]
+[ 1   3   5 ]
+</div>
+
+<p>
+Is matrix mein:
+</p>
+
+<ul>
+
+<li>2 rows hain</li>
+
+<li>3 columns hain</li>
+
+</ul>
+
+<p>
+Isliye iska order:
+</p>
+
+<div class="formula">
+2 × 3
+</div>
+
+
+<h3>2.2 Rows kya hoti hain?</h3>
+
+<p>
+Horizontal direction mein numbers ki line ko row kehte hain.
+</p>
+
+<div class="matrix">
+[ 2   4   6 ]   ← Row 1
+[ 1   3   5 ]   ← Row 2
+</div>
+
+
+<h3>2.3 Columns kya hote hain?</h3>
+
+<p>
+Vertical direction mein numbers ki line column hoti hai.
+</p>
+
+<div class="matrix">
+[ 2   4   6 ]
+  ↓   ↓   ↓
+  C1  C2  C3
+
+[ 1   3   5 ]
+</div>
+
+
+<h3>2.4 Order of Matrix</h3>
+
+<div class="definition">
+
+Matrix ka order =
+Number of Rows × Number of Columns
+
+</div>
+
+<div class="example">
+
+Matrix:
+
+[ 1  2  3 ]
+[ 4  5  6 ]
+[ 7  8  9 ]
+[ 10 11 12 ]
+
+<br><br>
+
+Rows = 4
+
+<br>
+
+Columns = 3
+
+<br><br>
+
+Order = <b>4 × 3</b>
+
+</div>
+
+
+<h3>2.5 Matrix Element</h3>
+
+<p>
+Matrix ke individual number ko element kehte hain.
+</p>
+
+<p>
+Usually:
+</p>
+
+<div class="formula">
+a<sub>ij</sub>
+</div>
+
+<p>
+mein:
+</p>
+
+<ul>
+
+<li>i = row number</li>
+
+<li>j = column number</li>
+
+</ul>
+
+
+<div class="example">
+
+A =
+
+[ 10  20  30 ]
+
+[ 40  50  60 ]
+
+<br><br>
+
+a<sub>12</sub> = 20
+
+<br>
+
+because row 1, column 2 par 20 hai.
+
+<br><br>
+
+a<sub>21</sub> = 40
+
+</div>
+
+
+<h3>2.6 Matrix ka general form</h3>
+
+<div class="matrix">
+A =
+
+[ a₁₁   a₁₂   a₁₃ ]
+[ a₂₁   a₂₂   a₂₃ ]
+[ a₃₁   a₃₂   a₃₃ ]
+</div>
+
+<p>
+Agar matrix m rows aur n columns ki hai:
+</p>
+
+<div class="formula">
+A = [a<sub>ij</sub>]<sub>m×n</sub>
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- TYPES -->
+<!-- ===================================================== -->
+
+<section id="types">
+
+<h2>3. Types of Matrices</h2>
+
+
+<h3>3.1 Row Matrix</h3>
+
+<p>
+Jisme sirf ek row ho.
+</p>
+
+<div class="matrix">
+[ 2   4   6   8 ]
+</div>
+
+<p>
+Order = 1 × 4
+</p>
+
+
+<h3>3.2 Column Matrix</h3>
+
+<p>
+Jisme sirf ek column ho.
+</p>
+
+<div class="matrix">
+[ 2 ]
+[ 4 ]
+[ 6 ]
+[ 8 ]
+</div>
+
+<p>
+Order = 4 × 1
+</p>
+
+
+<h3>3.3 Square Matrix</h3>
+
+<div class="definition">
+
+Rows = Columns
+
+</div>
+
+<div class="matrix">
+[ 1  2 ]
+[ 3  4 ]
+</div>
+
+<p>
+Order = 2 × 2
+</p>
+
+
+<h3>3.4 Rectangular Matrix</h3>
+
+<p>
+Rows aur columns unequal hote hain.
+</p>
+
+<div class="matrix">
+[ 1  2  3 ]
+[ 4  5  6 ]
+</div>
+
+<p>
+Order = 2 × 3
+</p>
+
+
+<h3>3.5 Zero / Null Matrix</h3>
+
+<p>
+Saare elements zero.
+</p>
+
+<div class="matrix">
+[ 0  0 ]
+[ 0  0 ]
+</div>
+
+
+<h3>3.6 Diagonal Matrix</h3>
+
+<p>
+Main diagonal ke alawa baaki elements zero.
+</p>
+
+<div class="matrix">
+[ 5  0  0 ]
+[ 0  7  0 ]
+[ 0  0  9 ]
+</div>
+
+
+<h3>3.7 Scalar Matrix</h3>
+
+<p>
+Diagonal matrix jisme diagonal ke saare elements same hon.
+</p>
+
+<div class="matrix">
+[ 5  0  0 ]
+[ 0  5  0 ]
+[ 0  0  5 ]
+</div>
+
+
+<h3>3.8 Identity Matrix</h3>
+
+<div class="definition">
+
+Main diagonal = 1
+aur baaki saare elements = 0.
+
+</div>
+
+<div class="matrix">
+I₂ =
+
+[ 1  0 ]
+[ 0  1 ]
+</div>
+
+<p>
+3×3 identity:
+</p>
+
+<div class="matrix">
+I₃ =
+
+[ 1  0  0 ]
+[ 0  1  0 ]
+[ 0  0  1 ]
+</div>
+
+
+<div class="important">
+
+Identity matrix ka role multiplication mein
+number 1 jaisa hota hai.
+
+<br><br>
+
+A × I = A
+
+</div>
+
+
+<h3>3.9 Upper Triangular Matrix</h3>
+
+<div class="matrix">
+[ 2  4  6 ]
+[ 0  5  7 ]
+[ 0  0  8 ]
+</div>
+
+
+<h3>3.10 Lower Triangular Matrix</h3>
+
+<div class="matrix">
+[ 2  0  0 ]
+[ 4  5  0 ]
+[ 6  7  8 ]
+</div>
+
+
+<h3>3.11 Symmetric Matrix</h3>
+
+<div class="definition">
+
+Agar:
+
+A = Aᵀ
+
+to matrix symmetric hai.
+
+</div>
+
+<div class="matrix">
+A =
+
+[ 1  2  3 ]
+[ 2  4  5 ]
+[ 3  5  6 ]
+</div>
+
+<p>
+Diagonal ke opposite elements equal hain.
+</p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- OPERATIONS -->
+<!-- ===================================================== -->
+
+<section id="operations">
+
+<h2>4. Matrix Operations</h2>
+
+
+<h3>4.1 Matrix Addition</h3>
+
+<div class="definition">
+
+Do matrices ko add karne ke liye dono matrices ka
+order same hona chahiye.
+
+</div>
+
+
+<div class="example">
+
+A =
+
+[ 1  2 ]
+[ 3  4 ]
+
+<br><br>
+
+B =
+
+[ 5  6 ]
+[ 7  8 ]
+
+<br><br>
+
+A + B =
+
+[ 1+5  2+6 ]
+[ 3+7  4+8 ]
+
+<br><br>
+
+A + B =
+
+[ 6   8 ]
+[ 10  12 ]
+
+</div>
+
+
+<h3>4.2 Matrix Subtraction</h3>
+
+<p>
+Corresponding elements subtract karte hain.
+</p>
+
+<div class="example">
+
+A =
+
+[ 8  7 ]
+[ 6  5 ]
+
+<br><br>
+
+B =
+
+[ 2  3 ]
+[ 4  1 ]
+
+<br><br>
+
+A-B =
+
+[ 6  4 ]
+[ 2  4 ]
+
+</div>
+
+
+<h3>4.3 Scalar Multiplication</h3>
+
+<p>
+Ek number se matrix ke har element ko multiply karte hain.
+</p>
+
+<div class="example">
+
+A =
+
+[ 1  2 ]
+[ 3  4 ]
+
+<br><br>
+
+2A =
+
+[ 2  4 ]
+[ 6  8 ]
+
+</div>
+
+
+<h3>4.4 Matrix Multiplication</h3>
+
+<div class="important">
+
+Matrix multiplication sabse important topics mein se ek hai.
+
+</div>
+
+<p>
+Agar:
+</p>
+
+<p>
+A ka order = m × n
+</p>
+
+<p>
+B ka order = n × p
+</p>
+
+<p>
+to:
+</p>
+
+<div class="formula">
+
+A × B ka order = m × p
+
+</div>
+
+
+<h3>Sabse important rule</h3>
+
+<div class="formula">
+
+<b>Inner dimensions same honi chahiye.</b>
+
+<br><br>
+
+(m × n)(n × p) = (m × p)
+
+</div>
+
+
+<h3>4.5 Matrix Multiplication Example</h3>
+
+<p>
+Let:
+</p>
+
+<div class="matrix">
+A =
+
+[ 1  2 ]
+[ 3  4 ]
+
+<br>
+
+B =
+
+[ 5  6 ]
+[ 7  8 ]
+</div>
+
+
+<p>
+Ab first row × first column:
+</p>
+
+<div class="formula">
+
+1×5 + 2×7 = 5 + 14 = 19
+
+</div>
+
+
+<p>
+First row × second column:
+</p>
+
+<div class="formula">
+
+1×6 + 2×8 = 6 + 16 = 22
+
+</div>
+
+
+<p>
+Second row × first column:
+</p>
+
+<div class="formula">
+
+3×5 + 4×7 = 15 + 28 = 43
+
+</div>
+
+
+<p>
+Second row × second column:
+</p>
+
+<div class="formula">
+
+3×6 + 4×8 = 18 + 32 = 50
+
+</div>
+
+
+<p>
+Therefore:
+</p>
+
+<div class="matrix">
+
+AB =
+
+[ 19  22 ]
+[ 43  50 ]
+
+</div>
+
+
+<h3>4.6 Matrix Multiplication ko yaad kaise rakhein?</h3>
+
+<div class="tip">
+
+<b>Row × Column = One Element</b>
+
+<br><br>
+
+Result matrix ka har element:
+<br>
+
+First matrix ki ek row × second matrix ka ek column
+
+</div>
+
+
+<h3>4.7 Matrix Multiplication Commutative nahi hoti</h3>
+
+<div class="important">
+
+Generally:
+
+<br><br>
+
+AB ≠ BA
+
+</div>
+
+<p>
+Ye ordinary numbers se important difference hai.
+</p>
+
+
+<h3>4.8 Transpose of Matrix</h3>
+
+<div class="definition">
+
+Rows ko columns aur columns ko rows mein convert karne ko transpose kehte hain.
+
+</div>
+
+<p>
+Notation:
+</p>
+
+<div class="formula">
+Aᵀ
+</div>
+
+
+<div class="example">
+
+A =
+
+[ 1  2  3 ]
+[ 4  5  6 ]
+
+<br><br>
+
+Aᵀ =
+
+[ 1  4 ]
+[ 2  5 ]
+[ 3  6 ]
+
+</div>
+
+
+<h3>4.9 Important Properties</h3>
+
+<div class="formula">
+(Aᵀ)ᵀ = A
+</div>
+
+<div class="formula">
+(A+B)ᵀ = Aᵀ+Bᵀ
+</div>
+
+<div class="formula">
+(AB)ᵀ = BᵀAᵀ
+</div>
+
+<div class="important">
+
+Notice:
+
+(AB)ᵀ mein order reverse ho jata hai.
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- DETERMINANT -->
+<!-- ===================================================== -->
+
+<section id="determinant">
+
+<h2>5. Determinants</h2>
+
+
+<h3>5.1 Determinant kya hota hai?</h3>
+
+<div class="definition">
+
+Determinant ek scalar numerical value hai jo
+square matrix se calculate hoti hai.
+
+</div>
+
+<p>
+Determinant sirf square matrices ke liye define hota hai.
+</p>
+
+
+<h3>5.2 2×2 Matrix ka determinant</h3>
+
+<p>
+Agar:
+</p>
+
+<div class="matrix">
+
+A =
+
+[ a  b ]
+[ c  d ]
+
+</div>
+
+<p>
+to:
+</p>
+
+<div class="formula">
+
+|A| = ad - bc
+
+</div>
+
+
+<h3>5.3 Example</h3>
+
+<div class="matrix">
+
+A =
+
+[ 3  4 ]
+[ 2  5 ]
+
+</div>
+
+<p>
+Formula:
+</p>
+
+<div class="formula">
+
+|A| = ad - bc
+
+</div>
+
+<p>
+So:
+</p>
+
+<div class="formula">
+
+= (3×5) - (4×2)
+
+<br><br>
+
+= 15 - 8
+
+<br><br>
+
+= 7
+
+</div>
+
+
+<h3>5.4 Determinant ka importance</h3>
+
+<p>
+Determinant ka use:
+</p>
+
+<ul>
+
+<li>Matrix invertible hai ya nahi check karne mein</li>
+
+<li>Linear equations solve karne mein</li>
+
+<li>Area/volume calculations</li>
+
+<li>Computer graphics</li>
+
+<li>Linear transformations</li>
+
+<li>Numerical computing</li>
+
+</ul>
+
+
+<div class="important">
+
+Agar:
+
+<br><br>
+
+det(A) ≠ 0
+
+<br><br>
+
+to A ka inverse exist karta hai.
+
+<br><br>
+
+Agar:
+
+<br><br>
+
+det(A) = 0
+
+<br><br>
+
+to A singular matrix hai aur ordinary inverse exist nahi karta.
+
+</div>
+
+
+<h3>5.5 3×3 Determinant</h3>
+
+<p>
+Suppose:
+</p>
+
+<div class="matrix">
+
+A =
+
+[ a  b  c ]
+[ d  e  f ]
+[ g  h  i ]
+
+</div>
+
+<p>
+Determinant:
+</p>
+
+<div class="formula">
+
+|A|
+
+=
+
+a(ei - fh)
+-
+b(di - fg)
++
+c(dh - eg)
+
+</div>
+
+
+<h3>5.6 3×3 Example</h3>
+
+<div class="matrix">
+
+A =
+
+[ 1  2  3 ]
+[ 0  4  5 ]
+[ 1  0  6 ]
+
+</div>
+
+<p>
+Formula:
+</p>
+
+<div class="formula">
+
+|A|
+=
+1(4×6 - 5×0)
+-
+2(0×6 - 5×1)
++
+3(0×0 - 4×1)
+
+</div>
+
+<p>
+Calculate:
+</p>
+
+<div class="formula">
+
+= 1(24)
+
+- 2(-5)
+
++ 3(-4)
+
+<br><br>
+
+= 24 + 10 - 12
+
+<br><br>
+
+= 22
+
+</div>
+
+
+<h3>5.7 Determinant aur Area</h3>
+
+<p>
+2D geometry mein determinant transformation ke area scaling factor ko represent kar sakta hai.
+</p>
+
+<div class="example">
+
+Agar transformation matrix ka determinant:
+
+det(A) = 2
+
+<br><br>
+
+to area approximately 2 times scale ho sakta hai.
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- INVERSE -->
+<!-- ===================================================== -->
+
+<section id="inverse">
+
+<h2>6. Inverse of Matrix</h2>
+
+
+<h3>6.1 Inverse kya hota hai?</h3>
+
+<div class="definition">
+
+Matrix A ka inverse A⁻¹ woh matrix hai jiske saath multiply karne par
+identity matrix milti hai.
+
+</div>
+
+<div class="formula">
+
+A × A⁻¹ = I
+
+</div>
+
+<p>
+Bilkul numbers jaisa concept:
+</p>
+
+<div class="example">
+
+5 × 1/5 = 1
+
+</div>
+
+<p>
+Waise:
+</p>
+
+<div class="formula">
+
+A × A⁻¹ = I
+
+</div>
+
+
+<h3>6.2 Inverse exist kab karta hai?</h3>
+
+<div class="important">
+
+A⁻¹ tabhi exist karega jab:
+
+<br><br>
+
+det(A) ≠ 0
+
+</div>
+
+
+<h3>6.3 2×2 Matrix ka Inverse Formula</h3>
+
+<p>
+Agar:
+</p>
+
+<div class="matrix">
+
+A =
+
+[ a  b ]
+[ c  d ]
+
+</div>
+
+<p>
+then:
+</p>
+
+<div class="formula">
+
+A⁻¹ =
+
+1/(ad-bc)
+
+×
+
+[ d   -b ]
+[ -c   a ]
+
+</div>
+
+
+<h3>6.4 Example</h3>
+
+<div class="matrix">
+
+A =
+
+[ 2  3 ]
+[ 1  4 ]
+
+</div>
+
+<p>
+Step 1: determinant:
+</p>
+
+<div class="formula">
+
+det(A)
+=
+(2×4)-(3×1)
+
+<br><br>
+
+= 8-3
+
+<br><br>
+
+= 5
+
+</div>
+
+<p>
+Step 2:
+</p>
+
+<div class="matrix">
+
+[ d  -b ]
+[ -c  a ]
+
+=
+
+[ 4  -3 ]
+[ -1  2 ]
+
+</div>
+
+<p>
+Step 3:
+</p>
+
+<div class="formula">
+
+A⁻¹ = 1/5
+
+[ 4  -3 ]
+[ -1  2 ]
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="matrix">
+
+A⁻¹ =
+
+[ 4/5   -3/5 ]
+[ -1/5   2/5 ]
+
+</div>
+
+
+<h3>6.5 Inverse ko verify kaise karein?</h3>
+
+<p>
+A × A⁻¹ calculate karo.
+</p>
+
+<p>
+Agar answer identity matrix aaye:
+</p>
+
+<div class="matrix">
+
+[ 1  0 ]
+[ 0  1 ]
+
+</div>
+
+<p>
+to inverse correct hai.
+</p>
+
+
+<h3>6.6 Inverse ka Computing mein use</h3>
+
+<ul>
+
+<li>Linear equations solve karna</li>
+
+<li>Computer graphics transformations</li>
+
+<li>Data transformations</li>
+
+<li>Optimization</li>
+
+<li>Machine learning mathematics</li>
+
+<li>Numerical analysis</li>
+
+</ul>
+
+
+<div class="tip">
+
+Practical programming mein large matrices ka inverse
+directly calculate karna hamesha best approach nahi hota.
+Efficient numerical algorithms jaise matrix factorization
+use ki ja sakti hain.
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- LINEAR EQUATIONS -->
+<!-- ===================================================== -->
+
+<section id="equations">
+
+<h2>7. Simultaneous Linear Equations</h2>
+
+
+<h3>7.1 Simultaneous equations kya hoti hain?</h3>
+
+<div class="definition">
+
+Do ya do se zyada linear equations jinhe ek saath solve karna ho,
+unhe simultaneous linear equations kehte hain.
+
+</div>
+
+
+<h3>7.2 Simple Example</h3>
+
+<div class="formula">
+
+x + y = 10
+
+<br>
+
+x - y = 2
+
+</div>
+
+<p>
+Hume x aur y dono find karne hain.
+</p>
+
+
+<h3>7.3 Elimination Method</h3>
+
+<p>
+Equations:
+</p>
+
+<div class="formula">
+
+x + y = 10
+
+<br>
+
+x - y = 2
+
+</div>
+
+<p>
+Dono equations add:
+</p>
+
+<div class="formula">
+
+2x = 12
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+
+x = 6
+
+</div>
+
+<p>
+Ab:
+</p>
+
+<div class="formula">
+
+x+y=10
+
+<br>
+
+6+y=10
+
+<br>
+
+y=4
+
+</div>
+
+<p>
+Answer:
+</p>
+
+<div class="formula">
+
+<b>x = 6, y = 4</b>
+
+</div>
+
+
+<h3>7.4 Matrix Form</h3>
+
+<p>
+Same equations:
+</p>
+
+<div class="formula">
+
+x+y=10
+
+<br>
+
+x-y=2
+
+</div>
+
+<p>
+Matrix form:
+</p>
+
+<div class="formula">
+
+AX = B
+
+</div>
+
+<p>
+where:
+</p>
+
+<div class="matrix">
+
+A =
+
+[ 1   1 ]
+[ 1  -1 ]
+
+<br><br>
+
+X =
+
+[ x ]
+[ y ]
+
+<br><br>
+
+B =
+
+[ 10 ]
+[  2 ]
+
+</div>
+
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+
+AX = B
+
+</div>
+
+
+<h3>7.5 Matrix Method</h3>
+
+<p>
+Agar A inverseable hai:
+</p>
+
+<div class="formula">
+
+AX = B
+
+</div>
+
+<p>
+Dono sides ko A⁻¹ se multiply:
+</p>
+
+<div class="formula">
+
+A⁻¹AX = A⁻¹B
+
+</div>
+
+<p>
+Because:
+</p>
+
+<div class="formula">
+
+A⁻¹A = I
+
+</div>
+
+<p>
+So:
+</p>
+
+<div class="formula">
+
+IX = A⁻¹B
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+
+<b>X = A⁻¹B</b>
+
+</div>
+
+
+<h3>7.6 Ye concept bahut important hai</h3>
+
+<div class="important">
+
+Linear equations:
+
+<br><br>
+
+AX = B
+
+<br><br>
+
+Solution:
+
+<br><br>
+
+X = A⁻¹B
+
+</div>
+
+<p>
+Ye matrix aur simultaneous equations ke beech ka direct connection hai.
+</p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- METHODS -->
+<!-- ===================================================== -->
+
+<section id="methods">
+
+<h2>8. Linear Equations Solve Karne ke Methods</h2>
+
+
+<h3>Method 1 — Substitution Method</h3>
+
+<div class="example">
+
+Equations:
+
+<br>
+
+x + y = 10
+
+<br>
+
+x - y = 2
+
+<br><br>
+
+First equation se:
+
+<br>
+
+x = 10-y
+
+<br><br>
+
+Second mein substitute:
+
+<br>
+
+10-y-y=2
+
+<br>
+
+10-2y=2
+
+<br>
+
+2y=8
+
+<br>
+
+y=4
+
+<br>
+
+x=6
+
+</div>
+
+
+<h3>Method 2 — Elimination Method</h3>
+
+<p>
+Ek variable ko eliminate karne ke liye equations add/subtract karte hain.
+</p>
+
+<div class="example">
+
+2x + y = 7
+
+<br>
+
+x - y = 2
+
+<br><br>
+
+Add:
+
+<br>
+
+3x = 9
+
+<br>
+
+x = 3
+
+<br><br>
+
+Then:
+
+<br>
+
+3-y=2
+
+<br>
+
+y=1
+
+</div>
+
+
+<h3>Method 3 — Matrix Inverse Method</h3>
+
+<p>
+Equations:
+</p>
+
+<div class="formula">
+
+2x+y=7
+
+<br>
+
+x-y=2
+
+</div>
+
+<p>
+Matrix:
+</p>
+
+<div class="matrix">
+
+[ 2   1 ] [ x ]   [ 7 ]
+[ 1  -1 ] [ y ] = [ 2 ]
+
+</div>
+
+<p>
+AX=B
+</p>
+
+<p>
+Then:
+</p>
+
+<div class="formula">
+
+X=A⁻¹B
+
+</div>
+
+
+<h3>Method 4 — Cramer's Rule</h3>
+
+<p>
+2 variables ke case mein:
+</p>
+
+<div class="formula">
+
+x = Dₓ / D
+
+<br><br>
+
+y = Dᵧ / D
+
+</div>
+
+<p>
+where D coefficient matrix ka determinant hai.
+</p>
+
+
+<h3>8.1 Cramer's Rule Example</h3>
+
+<p>
+Equations:
+</p>
+
+<div class="formula">
+
+2x + y = 7
+
+<br>
+
+x - y = 2
+
+</div>
+
+<p>
+Coefficient determinant:
+</p>
+
+<div class="matrix">
+
+D =
+
+| 2   1 |
+| 1  -1 |
+
+</div>
+
+<div class="formula">
+
+D = (2×-1)-(1×1)
+
+<br>
+
+= -2-1
+
+<br>
+
+= -3
+
+</div>
+
+
+<p>
+Dx:
+</p>
+
+<div class="matrix">
+
+Dx =
+
+| 7   1 |
+| 2  -1 |
+
+</div>
+
+<div class="formula">
+
+Dx = -7 - 2 = -9
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+
+x = Dx/D
+
+<br>
+
+x = (-9)/(-3)
+
+<br>
+
+<b>x=3</b>
+
+</div>
+
+
+<p>
+Dy:
+</p>
+
+<div class="matrix">
+
+Dy =
+
+| 2  7 |
+| 1  2 |
+
+</div>
+
+<div class="formula">
+
+Dy = 4-7
+
+<br>
+
+= -3
+
+</div>
+
+<div class="formula">
+
+y = Dy/D
+
+<br>
+
+= (-3)/(-3)
+
+<br>
+
+<b>y=1</b>
+
+</div>
+
+
+<h3>8.2 Three Equations ka General Form</h3>
+
+<p>
+Teen variables:
+</p>
+
+<div class="formula">
+
+a₁x+b₁y+c₁z=d₁
+
+<br>
+
+a₂x+b₂y+c₂z=d₂
+
+<br>
+
+a₃x+b₃y+c₃z=d₃
+
+</div>
+
+<p>
+Matrix form:
+</p>
+
+<div class="matrix">
+
+[ a₁ b₁ c₁ ] [ x ]   [ d₁ ]
+[ a₂ b₂ c₂ ] [ y ] = [ d₂ ]
+[ a₃ b₃ c₃ ] [ z ]   [ d₃ ]
+
+</div>
+
+
+<h3>8.3 Possible Solutions</h3>
+
+<p>
+Linear equations ke generally 3 situations ho sakte hain:
+</p>
+
+<table>
+
+<tr>
+<th>Situation</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>Unique Solution</td>
+<td>Exactly one solution</td>
+</tr>
+
+<tr>
+<td>No Solution</td>
+<td>Equations inconsistent hain</td>
+</tr>
+
+<tr>
+<td>Infinitely Many Solutions</td>
+<td>Bahut saare solutions possible hain</td>
+</tr>
+
+</table>
+
+
+<h3>8.4 Unique Solution</h3>
+
+<div class="example">
+
+x+y=10
+
+<br>
+
+x-y=2
+
+<br><br>
+
+Solution:
+
+x=6, y=4
+
+</div>
+
+
+<h3>8.5 No Solution</h3>
+
+<div class="example">
+
+x+y=5
+
+<br>
+
+x+y=10
+
+</div>
+
+<p>
+Same left side but different right side.
+Dono simultaneously true nahi ho sakti.
+</p>
+
+
+<h3>8.6 Infinite Solutions</h3>
+
+<div class="example">
+
+x+y=5
+
+<br>
+
+2x+2y=10
+
+</div>
+
+<p>
+Second equation first equation ka multiple hai.
+Isliye infinitely many solutions possible hain.
+</p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- APPLICATIONS -->
+<!-- ===================================================== -->
+
+<section id="applications">
+
+<h2>9. Applications of Linear Algebra in Computing</h2>
+
+
+<h3>9.1 Computer Graphics</h3>
+
+<div class="definition">
+
+Computer graphics mein objects ko move, rotate, scale aur transform
+karne ke liye matrices ka use hota hai.
+
+</div>
+
+
+<h4>Translation</h4>
+
+<p>
+Object ko ek location se doosri location move karna.
+</p>
+
+
+<h4>Scaling</h4>
+
+<p>
+Object ko bada ya chhota karna.
+</p>
+
+<div class="formula">
+
+x' = sx × x
+
+<br>
+
+y' = sy × y
+
+</div>
+
+
+<h4>Rotation</h4>
+
+<p>
+2D rotation ke liye matrix:
+</p>
+
+<div class="matrix">
+
+[ cosθ   -sinθ ]
+[ sinθ    cosθ ]
+
+</div>
+
+<p>
+Ye matrix point ko rotate kar sakti hai.
+</p>
+
+
+<h3>9.2 Image Processing</h3>
+
+<div class="definition">
+
+Digital image ko pixels ke matrix ke form mein represent kiya ja sakta hai.
+
+</div>
+
+<p>
+Example grayscale image:
+</p>
+
+<div class="matrix">
+
+[  0   50  100 ]
+[ 80  120  200 ]
+[ 30  180  255 ]
+
+</div>
+
+<p>
+Har number pixel intensity represent kar sakta hai.
+</p>
+
+<p>
+Generally grayscale intensity:
+</p>
+
+<ul>
+
+<li>0 → black</li>
+
+<li>higher value → brighter pixel</li>
+
+<li>255 → white in a common 8-bit representation</li>
+
+</ul>
+
+
+<h3>9.3 Machine Learning</h3>
+
+<p>
+Machine learning mein data ko matrix form mein store karna common hai.
+</p>
+
+<div class="example">
+
+Suppose 3 students aur 2 features:
+
+<br>
+
+Hours studied
+<br>
+Attendance
+
+<br><br>
+
+X =
+
+[ 5   80 ]
+[ 7   90 ]
+[ 3   60 ]
+
+</div>
+
+<p>
+Rows = students
+</p>
+
+<p>
+Columns = features
+</p>
+
+
+<h3>9.4 Linear Regression</h3>
+
+<p>
+Linear regression mein:
+</p>
+
+<div class="formula">
+
+y = mx + c
+
+</div>
+
+<p>
+Multiple features hone par matrix notation use ki ja sakti hai.
+</p>
+
+<div class="formula">
+
+<b>y = Xw + b</b>
+
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+
+<li>X = input data matrix</li>
+
+<li>w = weights</li>
+
+<li>b = bias</li>
+
+<li>y = prediction</li>
+
+</ul>
+
+
+<h3>9.5 Neural Networks</h3>
+
+<p>
+Neural networks mein matrix multiplication repeatedly hoti hai.
+</p>
+
+<div class="formula">
+
+Output = Activation(WX + b)
+
+</div>
+
+<p>
+Yahan W weights ki matrix hai.
+</p>
+
+
+<h3>9.6 Data Science</h3>
+
+<p>
+Large datasets ko matrix form mein represent karna easy hota hai.
+</p>
+
+<p>
+Example:
+</p>
+
+<div class="matrix">
+
+Data =
+
+[ Age  Salary  Experience ]
+[ 21   25000   1          ]
+[ 25   40000   3          ]
+[ 30   60000   7          ]
+
+</div>
+
+
+<h3>9.7 Computer Vision</h3>
+
+<p>
+Images/video frames matrices ke form mein process kiye ja sakte hain.
+</p>
+
+<p>
+Computer vision operations:
+</p>
+
+<ul>
+
+<li>Image transformations</li>
+
+<li>Filtering</li>
+
+<li>Feature extraction</li>
+
+<li>Object recognition</li>
+
+<li>Image enhancement</li>
+
+</ul>
+
+
+<h3>9.8 Cryptography</h3>
+
+<p>
+Kuch cryptographic techniques mein matrices aur modular arithmetic
+ka use kiya ja sakta hai.
+</p>
+
+
+<h3>9.9 Search Engines</h3>
+
+<p>
+Web pages aur links ko mathematical structures mein represent karke
+ranking algorithms develop kiye ja sakte hain.
+</p>
+
+<p>
+Linear algebra ka role ranking and graph-based methods mein aa sakta hai.
+</p>
+
+
+<h3>9.10 Recommendation Systems</h3>
+
+<p>
+Movies/products/users ke preferences ko matrices mein represent kiya ja sakta hai.
+</p>
+
+<div class="example">
+
+Rows = Users
+
+<br>
+
+Columns = Movies
+
+<br>
+
+Values = Ratings
+
+</div>
+
+<div class="matrix">
+
+[ 5   4   0   0 ]
+[ 0   5   3   0 ]
+[ 4   0   5   2 ]
+
+</div>
+
+<p>
+Yahan 0 ka matlab ho sakta hai ki user ne movie ko rate nahi kiya.
+</p>
+
+
+<h3>9.11 Physics/Game Development</h3>
+
+<p>
+Games mein:
+</p>
+
+<ul>
+
+<li>Position</li>
+
+<li>Velocity</li>
+
+<li>Rotation</li>
+
+<li>Scaling</li>
+
+<li>Camera transformations</li>
+
+</ul>
+
+<p>
+mathematical vectors/matrices ke saath represent kiye ja sakte hain.
+</p>
+
+
+<h3>9.12 Robotics</h3>
+
+<p>
+Robot arm ke different joints aur positions ko transformations
+aur matrices ke through model kiya ja sakta hai.
+</p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- DEEP CONNECTION -->
+<!-- ===================================================== -->
+
+<section>
+
+<h2>10. 🔥 Ek Bahut Important Connection</h2>
+
+<p>
+Linear Algebra ke topics isolated nahi hain.
+Sab ek doosre se connected hain.
+</p>
+
+<div class="formula">
+
+Matrix
+↓
+<br>
+Matrix Operations
+↓
+<br>
+Determinant
+↓
+<br>
+Inverse
+↓
+<br>
+Linear Equations
+↓
+<br>
+Computing Applications
+</div>
+
+
+<h3>Example: Complete Connection</h3>
+
+<p>
+Suppose:
+</p>
+
+<div class="formula">
+
+2x+y=7
+
+<br>
+
+x-y=2
+
+</div>
+
+<p>
+Step 1:
+Coefficient matrix:
+</p>
+
+<div class="matrix">
+
+A =
+
+[ 2   1 ]
+[ 1  -1 ]
+
+</div>
+
+<p>
+Step 2:
+</p>
+
+<div class="formula">
+
+det(A)=-3
+
+</div>
+
+<p>
+Since determinant non-zero hai,
+inverse exist karta hai.
+</p>
+
+<p>
+Step 3:
+</p>
+
+<div class="formula">
+
+X=A⁻¹B
+
+</div>
+
+<p>
+Step 4:
+</p>
+
+<div class="formula">
+
+X =
+
+[ 3 ]
+[ 1 ]
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+
+<b>x=3, y=1</b>
+
+</div>
+
+<p>
+Ye ek complete example hai jahan:
+</p>
+
+<ul>
+
+<li>Matrix</li>
+
+<li>Determinant</li>
+
+<li>Inverse</li>
+
+<li>Simultaneous equations</li>
+
+</ul>
+
+<p>
+sab connect ho gaye.
+</p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- PROPERTIES -->
+<!-- ===================================================== -->
+
+<section>
+
+<h2>11. Important Matrix Properties</h2>
+
+<table>
+
+<tr>
+<th>Property</th>
+<th>Formula</th>
+</tr>
+
+<tr>
+<td>Addition Commutative</td>
+<td>A+B = B+A</td>
+</tr>
+
+<tr>
+<td>Addition Associative</td>
+<td>(A+B)+C = A+(B+C)</td>
+</tr>
+
+<tr>
+<td>Multiplication Associative</td>
+<td>(AB)C = A(BC)</td>
+</tr>
+
+<tr>
+<td>Multiplication Distributive</td>
+<td>A(B+C)=AB+AC</td>
+</tr>
+
+<tr>
+<td>Identity</td>
+<td>AI=IA=A</td>
+</tr>
+
+<tr>
+<td>Generally Not Commutative</td>
+<td>AB ≠ BA</td>
+</tr>
+
+<tr>
+<td>Transpose</td>
+<td>(AB)ᵀ=BᵀAᵀ</td>
+</tr>
+
+<tr>
+<td>Inverse</td>
+<td>AA⁻¹=I</td>
+</tr>
+
+</table>
+
+
+<h3>Determinant Properties</h3>
+
+<ul>
+
+<li>det(A) = 0 → singular matrix</li>
+
+<li>det(A) ≠ 0 → inverse exists</li>
+
+<li>det(AB)=det(A)det(B)</li>
+
+<li>det(Aᵀ)=det(A)</li>
+
+</ul>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- COMMON MISTAKES -->
+<!-- ===================================================== -->
+
+<section id="mistakes">
+
+<h2>12. ⚠️ Common Mistakes</h2>
+
+
+<h3>Mistake 1: Matrix Addition ke different orders</h3>
+
+<div class="important">
+
+2×3 matrix + 3×2 matrix directly add nahi kar sakte.
+
+</div>
+
+
+<h3>Mistake 2: Multiplication ka wrong rule</h3>
+
+<p>
+Students aksar same order ko multiplication ke liye required samajh lete hain.
+</p>
+
+<p>
+Correct:
+</p>
+
+<div class="formula">
+
+(m×n)(n×p)
+
+</div>
+
+<p>
+Inner numbers same hone chahiye.
+</p>
+
+
+<h3>Mistake 3: AB = BA assume karna</h3>
+
+<div class="important">
+
+Generally:
+
+AB ≠ BA
+
+</div>
+
+
+<h3>Mistake 4: Determinant rectangular matrix ka nikalna</h3>
+
+<div class="important">
+
+Determinant sirf square matrix ke liye hota hai.
+
+</div>
+
+
+<h3>Mistake 5: Inverse bina determinant check kiye</h3>
+
+<p>
+Pehle:
+</p>
+
+<div class="formula">
+
+det(A) ≠ 0
+
+</div>
+
+<p>
+check karo.
+</p>
+
+
+<h3>Mistake 6: 2×2 inverse formula mein signs</h3>
+
+<p>
+A:
+</p>
+
+<div class="matrix">
+
+[ a  b ]
+[ c  d ]
+
+</div>
+
+<p>
+Inverse ke numerator mein:
+</p>
+
+<div class="matrix">
+
+[  d  -b ]
+[ -c   a ]
+
+</div>
+
+<div class="tip">
+
+<b>Diagonal elements swap karo,
+off-diagonal elements ke signs change karo.</b>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- FORMULA SHEET -->
+<!-- ===================================================== -->
+
+<section>
+
+<h2>13. 🧠 Formula Sheet</h2>
+
+
+<h3>Matrix Order</h3>
+
+<div class="formula">
+
+Rows × Columns
+
+</div>
+
+
+<h3>2×2 Determinant</h3>
+
+<div class="formula">
+
+|A| = ad-bc
+
+</div>
+
+
+<h3>2×2 Inverse</h3>
+
+<div class="formula">
+
+A⁻¹ =
+1/(ad-bc)
+
+[ d  -b ]
+[ -c  a ]
+
+</div>
+
+
+<h3>Matrix Equation</h3>
+
+<div class="formula">
+
+AX=B
+
+</div>
+
+
+<h3>Solution by Inverse</h3>
+
+<div class="formula">
+
+X=A⁻¹B
+
+</div>
+
+
+<h3>Transpose</h3>
+
+<div class="formula">
+
+(AB)ᵀ=BᵀAᵀ
+
+</div>
+
+
+<h3>Identity</h3>
+
+<div class="formula">
+
+AI=A
+
+</div>
+
+
+<h3>Inverse Condition</h3>
+
+<div class="formula">
+
+det(A)≠0
+
+</div>
+
+
+<h3>Matrix Multiplication</h3>
+
+<div class="formula">
+
+(m×n)(n×p)=(m×p)
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- COMPARISON -->
+<!-- ===================================================== -->
+
+<section>
+
+<h2>14. Matrix vs Determinant vs Inverse</h2>
+
+<table>
+
+<tr>
+
+<th>Concept</th>
+
+<th>Simple Meaning</th>
+
+<th>Example</th>
+
+</tr>
+
+<tr>
+
+<td>Matrix</td>
+
+<td>Numbers ka rows/columns arrangement</td>
+
+<td>[1 2; 3 4]</td>
+
+</tr>
+
+<tr>
+
+<td>Determinant</td>
+
+<td>Square matrix se nikli scalar value</td>
+
+<td>ad-bc</td>
+
+</tr>
+
+<tr>
+
+<td>Inverse</td>
+
+<td>Matrix jo original matrix ko identity mein convert kare</td>
+
+<td>A⁻¹</td>
+
+</tr>
+
+<tr>
+
+<td>Linear Equations</td>
+
+<td>Unknown variables ko solve karna</td>
+
+<td>AX=B</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- EXAM QUESTIONS -->
+<!-- ===================================================== -->
+
+<section id="exam">
+
+<h2>15. 🎯 BCA Exam-Oriented Questions</h2>
+
+
+<h3>Short Questions</h3>
+
+<ol>
+
+<li>Define a matrix.</li>
+
+<li>What is the order of a matrix?</li>
+
+<li>Define square matrix.</li>
+
+<li>What is an identity matrix?</li>
+
+<li>What is a diagonal matrix?</li>
+
+<li>Define transpose of a matrix.</li>
+
+<li>What is determinant?</li>
+
+<li>Find determinant of a 2×2 matrix.</li>
+
+<li>When does inverse of a matrix exist?</li>
+
+<li>Define singular matrix.</li>
+
+<li>What is a simultaneous linear equation?</li>
+
+<li>Write AX=B representation.</li>
+
+<li>Write the formula X=A⁻¹B.</li>
+
+<li>What is Cramer's Rule?</li>
+
+<li>Give two applications of matrices in computing.</li>
+
+</ol>
+
+
+<h3>Long Questions</h3>
+
+<ol>
+
+<li>
+Explain different types of matrices with examples.
+</li>
+
+<li>
+Explain matrix addition, subtraction and scalar multiplication.
+</li>
+
+<li>
+Explain matrix multiplication with a suitable example.
+</li>
+
+<li>
+Explain determinant of 2×2 and 3×3 matrices.
+</li>
+
+<li>
+Explain inverse of a 2×2 matrix with an example.
+</li>
+
+<li>
+Solve simultaneous linear equations using matrix inverse method.
+</li>
+
+<li>
+Explain Cramer's Rule with an example.
+</li>
+
+<li>
+Explain applications of linear algebra in computer graphics.
+</li>
+
+<li>
+Explain the role of matrices in machine learning.
+</li>
+
+<li>
+Explain applications of linear algebra in image processing and computer vision.
+</li>
+
+</ol>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- PRACTICE -->
+<!-- ===================================================== -->
+
+<section>
+
+<h2>16. ✍️ Practice Questions</h2>
+
+
+<h3>Q1. Matrix ka order find karo</h3>
+
+<div class="matrix">
+
+A =
+
+[ 2  4  6 ]
+[ 1  3  5 ]
+
+</div>
+
+<p>
+Answer:
+</p>
+
+<div class="formula">
+2 × 3
+</div>
+
+
+<h3>Q2. Addition karo</h3>
+
+<div class="matrix">
+
+A =
+
+[ 1  2 ]
+[ 3  4 ]
+
+<br>
+
+B =
+
+[ 5  6 ]
+[ 7  8 ]
+
+</div>
+
+<p>
+Find A+B.
+</p>
+
+<details>
+
+<summary><b>Show Answer</b></summary>
+
+<div class="matrix">
+
+[ 6   8 ]
+[ 10  12 ]
+
+</div>
+
+</details>
+
+
+<h3>Q3. Determinant find karo</h3>
+
+<div class="matrix">
+
+A =
+
+[ 4  7 ]
+[ 2  5 ]
+
+</div>
+
+<details>
+
+<summary><b>Show Answer</b></summary>
+
+<div class="formula">
+
+det(A)
+
+= 4×5 - 7×2
+
+= 20-14
+
+= <b>6</b>
+
+</div>
+
+</details>
+
+
+<h3>Q4. Inverse find karo</h3>
+
+<div class="matrix">
+
+A =
+
+[ 2  1 ]
+[ 1  1 ]
+
+</div>
+
+<details>
+
+<summary><b>Show Answer</b></summary>
+
+<div class="formula">
+
+det(A)=2×1-1×1=1
+
+</div>
+
+<div class="matrix">
+
+A⁻¹ =
+
+[ 1  -1 ]
+[ -1  2 ]
+
+</div>
+
+</details>
+
+
+<h3>Q5. Equations solve karo</h3>
+
+<div class="formula">
+
+x+y=8
+
+<br>
+
+x-y=2
+
+</div>
+
+<details>
+
+<summary><b>Show Answer</b></summary>
+
+<div class="formula">
+
+2x=10
+
+<br>
+
+x=5
+
+<br>
+
+y=3
+
+<br><br>
+
+<b>Answer: x=5, y=3</b>
+
+</div>
+
+</details>
+
+
+<h3>Q6. Matrix multiplication</h3>
+
+<div class="matrix">
+
+A =
+
+[ 1  2 ]
+[ 2  1 ]
+
+<br>
+
+B =
+
+[ 3  4 ]
+[ 5  6 ]
+
+</div>
+
+<details>
+
+<summary><b>Show Answer</b></summary>
+
+<div class="matrix">
+
+AB =
+
+[ 13  16 ]
+[ 11  14 ]
+
+</div>
+
+</details>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- QUICK REVISION -->
+<!-- ===================================================== -->
+
+<section id="revision">
+
+<h2>17. 🚀 Last-Minute Revision</h2>
+
+<table>
+
+<tr>
+<th>Topic</th>
+<th>Yaad Rakho</th>
+</tr>
+
+<tr>
+<td>Matrix</td>
+<td>Rows × Columns mein numbers ka arrangement</td>
+</tr>
+
+<tr>
+<td>Order</td>
+<td>m × n</td>
+</tr>
+
+<tr>
+<td>Identity Matrix</td>
+<td>Diagonal 1, baaki 0</td>
+</tr>
+
+<tr>
+<td>Addition</td>
+<td>Same order required</td>
+</tr>
+
+<tr>
+<td>Multiplication</td>
+<td>Inner dimensions same</td>
+</tr>
+
+<tr>
+<td>Transpose</td>
+<td>Rows ↔ Columns</td>
+</tr>
+
+<tr>
+<td>Determinant</td>
+<td>Square matrix ka scalar value</td>
+</tr>
+
+<tr>
+<td>2×2 Determinant</td>
+<td>ad-bc</td>
+</tr>
+
+<tr>
+<td>Inverse</td>
+<td>A×A⁻¹=I</td>
+</tr>
+
+<tr>
+<td>Inverse Condition</td>
+<td>det(A)≠0</td>
+</tr>
+
+<tr>
+<td>Linear Equation</td>
+<td>AX=B</td>
+</tr>
+
+<tr>
+<td>Matrix Solution</td>
+<td>X=A⁻¹B</td>
+</tr>
+
+<tr>
+<td>Cramer's Rule</td>
+<td>x=Dx/D, y=Dy/D</td>
+</tr>
+
+<tr>
+<td>Computing</td>
+<td>AI, ML, graphics, images, data, robotics</td>
+</tr>
+
+</table>
+
+
+<h2>18. ❤️ Sab Kuch Ek Story Mein</h2>
+
+<div class="important">
+
+<p>
+
+Maan lo tumhare paas bahut saara numerical data hai.
+
+</p>
+
+<p>
+
+Sabse pehle data ko <b>Matrix</b> mein arrange kar sakte ho.
+
+</p>
+
+<p>
+
+Phir matrix par <b>Addition, Multiplication, Transpose</b>
+jaise operations kar sakte ho.
+
+</p>
+
+<p>
+
+Agar kisi square matrix ka <b>Determinant</b> non-zero hai,
+to uska <b>Inverse</b> exist kar sakta hai.
+
+</p>
+
+<p>
+
+Inverse ki help se <b>Simultaneous Linear Equations</b>
+solve kar sakte ho.
+
+</p>
+
+<p>
+
+Aur yehi mathematics aage jaakar
+<b>Computer Graphics, Image Processing, Machine Learning,
+AI, Computer Vision, Robotics aur Data Science</b>
+mein use hoti hai.
+
+</p>
+
+</div>
+
+
+<h2>19. 🧠 BCA Student ke liye Final Understanding</h2>
+
+<div class="formula">
+
+<b>
+Matrix = Data ko arrange karna
+</b>
+
+<br><br>
+
+<b>
+Matrix Operations = Data par calculation karna
+</b>
+
+<br><br>
+
+<b>
+Determinant = Matrix ki important numerical property
+</b>
+
+<br><br>
+
+<b>
+Inverse = Matrix ka mathematical "reverse"
+</b>
+
+<br><br>
+
+<b>
+Linear Equations = Unknown values find karna
+</b>
+
+<br><br>
+
+<b>
+Linear Algebra = Computing ke numerical systems ki foundation
+</b>
+
+</div>
+
+
+<div class="tip">
+
+<h3>⭐ Exam Trick</h3>
+
+<p>
+Exam mein sirf final answer mat likhna.
+</p>
+
+<p>
+Especially numerical questions mein:
+</p>
+
+<ol>
+
+<li>Given matrix/equations likho</li>
+
+<li>Formula likho</li>
+
+<li>Values substitute karo</li>
+
+<li>Calculation step-by-step dikhao</li>
+
+<li>Final answer ko clearly box/underline karo</li>
+
+</ol>
+
+<p>
+Isse examiner ko tumhara complete method dikhta hai.
+</p>
+
+</div>
+
+
+<div class="important">
+
+<h2>🔥 Most Important 5 Things</h2>
+
+<ol>
+
+<li>
+<b>Matrix multiplication:</b>
+(m×n)(n×p) = m×p
+</li>
+
+<li>
+<b>2×2 determinant:</b>
+ad-bc
+</li>
+
+<li>
+<b>Inverse:</b>
+A×A⁻¹=I
+</li>
+
+<li>
+<b>Inverse exists:</b>
+det(A)≠0
+</li>
+
+<li>
+<b>Linear equation:</b>
+AX=B → X=A⁻¹B
+</li>
+
+</ol>
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<footer>
+
+<h2>Linear Algebra for Computing</h2>
+
+<p>
+BCA Complete Study Notes
+</p>
+
+<p>
+Concept → Formula → Example → Application → Practice
+</p>
+
+<p>
+❤️ Keep practicing. Mathematics ratne se nahi,
+questions solve karne se strong hoti hai.
+</p>
+
+</footer>
+
+
+</body>
+</html>
